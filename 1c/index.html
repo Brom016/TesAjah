@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>smile :)</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="paper heart"></div>
+
+    <div class="paper image">
+      <p>I will remember that, for sure and</p>
+      <p>I’ll do my part to make sure</p>
+      <p>you have more good days than bad ones.</p>
+      <img src="images/1.jpg" />
+    </div>
+
+    <div class="paper image">
+      <p>I’m not talking about “forever”,</p>
+      <p>but I’m definitely not going</p>
+      <p>anywhere anytime soon.</p>
+      <P>cuz we have a promise ^_~</P>
+      <img src="images/2.jpg" />
+    </div>
+
+    <div class="paper image">
+      <p>I’ve got your back… at least for today</p>
+      <p>and the foreseeable future.</p>
+      <p>just like this</p>
+
+      <img src="images/3.jpg" />
+    </div>
+
+    <div class="paper red">
+      <p class="p1">And honestly, the way you vibe with cats says a lot —</p>
+      <p class="p2">in a good, slightly legendary way.</p>
+    </div>
+
+    <div class="paper">
+      <p class="p1">Everything feels unpredictable lately,</p>
+      <p class="p2">but somehow your presence feels surprisingly comforting.</p>
+      <p class="p3"></p>
+    </div>
+
+    <div class="paper">
+      <p class="p1">I was prepared for an ordinary day…</p>
+      <p class="p2">and then you casually made it way more interesting.</p>
+      <p class="p3"></p>
+    </div>
+
+    <div class="paper">
+      <p class="p1">Hi Iyaaa!</p>
+      <p class="p1">Idk what am i doing, but</p>
+      <p class="p2">Drag the papers to see what happens!</p>
+    </div>
+
+    <div class="paper sigma">
+    </div>
+    <!-- partial -->
+    <!-- Background music -->
+    <audio id="bgm" loop preload="auto">
+      <source src="../1b/qlx.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script>
+      const audio = document.getElementById("bgm");
+
+      function playMusic() {
+        audio.volume = 0.7;
+
+        const playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log("Music playing ✅");
+            })
+            .catch((err) => {
+              console.log(
+                "Autoplay blocked ❌ Waiting for more interaction...",
+                err
+              );
+            });
+        }
+
+        // remove all listeners after first success attempt
+        document.removeEventListener("click", playMusic);
+        document.removeEventListener("touchstart", playMusic);
+        document.removeEventListener("scroll", playMusic);
+        document.removeEventListener("mousemove", playMusic);
+      }
+
+      // multiple triggers = higher success rate
+      document.addEventListener("click", playMusic);
+      document.addEventListener("touchstart", playMusic);
+      document.addEventListener("scroll", playMusic);
+      document.addEventListener("mousemove", playMusic);
+    </script>
+
+    <script src="./mobile.js"></script>
+  </body>
+</html>

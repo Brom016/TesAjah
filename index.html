@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="1a/style.css" />
+    <title>Letter</title>
+  </head>
+  <body>
+    <div class="game">
+      <div class="game_loader">
+        <div class="game_loader__inner">
+          <div class="subtitle">
+            <h1>A letter!</h1>
+          </div>
+          <div class="bar">
+            <div class="bar_inner"></div>
+          </div>
+          <span>Loading Messages...</span>
+        </div>
+      </div>
+      <div class="game_intro">
+        <input
+          checked="checked"
+          class="dialogue"
+          id="intro-1"
+          name="intro"
+          type="radio"
+        />
+        <div class="dialogue">
+          Hello there!
+          <label for="intro-2">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/arrowMovement.png"
+            />
+          </label>
+        </div>
+        <input class="dialogue" id="intro-2" name="intro" type="radio" />
+        <div class="dialogue">
+          Im gonna give you a letter
+          <label for="intro-3">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/arrowMovement.png"
+            />
+          </label>
+        </div>
+        <input class="dialogue" id="intro-3" name="intro" type="radio" />
+        <div class="dialogue">
+          Geez it sure is dark in here
+          <label for="intro-4">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/arrowMovement.png"
+            />
+          </label>
+        </div>
+        <input class="dialogue" id="intro-4" name="intro" type="radio" />
+        <div class="dialogue">
+          Let me turn on the lamp...
+          <label for="intro-5">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/arrowMovement.png"
+            />
+          </label>
+        </div>
+        <input class="dialogue" id="intro-5" name="intro" type="radio" />
+
+        <input class="dialogue" id="intro-5" name="intro" type="radio" />
+        <div class="dialogue end">Better. Now read the letter.</div>
+        <input class="dialogue" id="intro-6" name="intro" type="radio" />
+        <div class="overlay"></div>
+      </div>
+    </div>
+    <div class="container"></div>
+    <script>
+      const lampTrigger = document.querySelector('label[for="intro-5"]');
+
+      lampTrigger.addEventListener("click", function () {
+        setTimeout(() => {
+          window.location.href = "1b/letter.html"; // halaman tujuan
+        }, 300); // kasih delay kecil biar transisi halus
+      });
+    </script>
+  </body>
+  <script src="1a/index.js"></script>
+</html>

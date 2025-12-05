@@ -1,0 +1,226 @@
+/* letter.css - envelope style (solid colors, paper look) */
+@import url('https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* warna natural seperti style 1c */
+  background-color: #f4e4c9;
+  /* dari colorhexa yang kamu pakai sebelumnya */
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* stage centers everything and provides perspective */
+.stage {
+  width: 820px;
+  max-width: 92vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+  /* needed for 3D flap rotation */
+}
+
+/* envelope box (paper + flaps) */
+.envelope {
+  width: 720px;
+  height: 380px;
+  position: relative;
+  transform: rotateZ(-3deg);
+  /* subtle tilt like 1c */
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+
+/* the paper visible inside envelope */
+.paper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f5efe6;
+  /* warm paper color */
+  box-shadow: 1px 12px 18px rgba(0, 0, 0, 0.18);
+  padding: 48px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* text styling using handwriting-like font similar to 1c */
+.text, .textTwo {
+  font-family: 'Love Ya Like A Sister', cursive;
+  color: rgb(0, 0, 100);
+  opacity: 0.95;
+  text-align: center;
+  user-select: none;
+}
+
+.text {
+  font-size: 48px;
+  margin-top: 6px;
+}
+
+.textTwo {
+  font-size: 28px;
+  margin-top: 8px;
+}
+
+/* flaps (top & bottom) */
+.flap {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: #e9d6ce;
+  /* envelope color, slightly darker than paper */
+  z-index: 5;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+  transition: transform 0.9s cubic-bezier(.2, .9, .2, 1), box-shadow 0.3s;
+}
+
+/* top flap rotates up around top edge */
+.flap-top {
+  top: 0;
+  transform-origin: top center;
+  transform: rotateX(0deg);
+}
+
+/* bottom flap rotates down around bottom edge */
+.flap-bottom {
+  bottom: 0;
+  transform-origin: bottom center;
+  transform: rotateX(0deg);
+}
+
+/* envelope open state: rotate flaps outward */
+.envelope.open .flap-top {
+  transform: rotateX(-180deg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.envelope.open .flap-bottom {
+  transform: rotateX(180deg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.1);
+  }
+
+  40% {
+    transform: scale(0.95);
+  }
+
+  60% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
+/* seal / heart (styled as small heart circle rotated like a seal)
+   initially darker and slightly hidden under the top flap */
+.seal {
+  animation: heartbeat 2s infinite;
+  position: absolute;
+  bottom: 20px;
+  left: 70%;
+
+  width: 84px;
+  height: 84px;
+
+  background: transparent;
+  box-shadow: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateX(-50%) translateY(12px) scale(1);
+  transition: 0.4s ease;
+
+  cursor: pointer;
+}
+
+.envelope:hover .seal {
+  transform: translateX(-50%) translateY(0) scale(1.1);
+}
+
+/* emoji style */
+.emoji {
+  font-size: 60px;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  /* supaya klik kena div seal */
+}
+
+
+
+/* when envelope is closed, push seal slightly down so it's tucked under flap */
+.envelope:not(.open) .seal {
+  transform: translateX(-50%) translateY(12px) rotate(45deg);
+  opacity: 0.9;
+}
+
+/* when open, bring seal fully - clickable state */
+.envelope.open .seal {
+  transform: translateX(-50%) translateY(0) rotate(45deg) scale(1.05);
+  opacity: 1;
+}
+
+/* small responsive tweaks */
+@media (max-width: 720px) {
+  .envelope {
+    width: 92vw;
+  }
+
+  .text {
+    font-size: 34px;
+  }
+
+  .textTwo {
+    font-size: 20px;
+  }
+
+  .paper {
+    padding: 28px 26px;
+  }
+
+  .seal {
+    width: 64px;
+    height: 64px;
+  }
+}
